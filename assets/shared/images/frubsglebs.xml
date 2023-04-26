@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="frubsglebs.png">
+	<!-- Created with Adobe Animate version 19.0.0.326 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="frub down0000" x="0" y="0" width="583" height="261" frameX="0" frameY="-25" frameWidth="587" frameHeight="288"/>
+	<SubTexture name="frub down0001" x="0" y="0" width="583" height="261" frameX="0" frameY="-25" frameWidth="587" frameHeight="288"/>
+	<SubTexture name="frub down0002" x="583" y="0" width="584" height="288" frameX="-3" frameY="0" frameWidth="587" frameHeight="288"/>
+	<SubTexture name="frub idle0000" x="1167" y="0" width="458" height="442"/>
+	<SubTexture name="frub left0000" x="0" y="442" width="717" height="432" frameX="0" frameY="-14" frameWidth="737" frameHeight="446"/>
+	<SubTexture name="frub left0001" x="0" y="442" width="717" height="432" frameX="0" frameY="-14" frameWidth="737" frameHeight="446"/>
+	<SubTexture name="frub left0002" x="717" y="442" width="705" height="446" frameX="-32" frameY="0" frameWidth="737" frameHeight="446"/>
+	<SubTexture name="frub right0000" x="1422" y="442" width="517" height="436" frameX="-9" frameY="-8" frameWidth="526" frameHeight="444"/>
+	<SubTexture name="frub right0001" x="1422" y="442" width="517" height="436" frameX="-9" frameY="-8" frameWidth="526" frameHeight="444"/>
+	<SubTexture name="frub right0002" x="0" y="888" width="510" height="444" frameX="0" frameY="0" frameWidth="526" frameHeight="444"/>
+	<SubTexture name="frub up0000" x="510" y="888" width="516" height="824" frameX="-6" frameY="0" frameWidth="522" frameHeight="824"/>
+	<SubTexture name="frub up0001" x="510" y="888" width="516" height="824" frameX="-6" frameY="0" frameWidth="522" frameHeight="824"/>
+	<SubTexture name="frub up0002" x="1026" y="888" width="519" height="793" frameX="0" frameY="-29" frameWidth="522" frameHeight="824"/>
+</TextureAtlas>

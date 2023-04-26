@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="textoDoMenu.png">
+	<!-- Created with Adobe Animate version 19.0.0.326 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="menuPar10000" x="0" y="0" width="174" height="173"/>
+	<SubTexture name="menuPar20000" x="0" y="173" width="174" height="173"/>
+	<SubTexture name="menuParte10000" x="0" y="346" width="240" height="173"/>
+	<SubTexture name="menuParte20000" x="0" y="519" width="240" height="173"/>
+	<SubTexture name="menuParte30000" x="0" y="692" width="240" height="173"/>
+</TextureAtlas>

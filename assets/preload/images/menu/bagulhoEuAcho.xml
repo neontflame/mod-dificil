@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="bagulhoEuAcho.png">
+	<!-- Created with Adobe Animate version 19.0.0.326 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="menuepico0000" x="0" y="0" width="784" height="456" frameX="0" frameY="-4" frameWidth="784" frameHeight="460"/>
+	<SubTexture name="menuepico0001" x="0" y="0" width="784" height="456" frameX="0" frameY="-4" frameWidth="784" frameHeight="460"/>
+	<SubTexture name="menuepico0002" x="0" y="456" width="783" height="460" frameX="-1" frameY="0" frameWidth="784" frameHeight="460"/>
+	<SubTexture name="menuepico0003" x="0" y="456" width="783" height="460" frameX="-1" frameY="0" frameWidth="784" frameHeight="460"/>
+	<SubTexture name="menuepico0004" x="0" y="456" width="783" height="460" frameX="-1" frameY="0" frameWidth="784" frameHeight="460"/>
+	<SubTexture name="menuepico0005" x="0" y="456" width="783" height="460" frameX="-1" frameY="0" frameWidth="784" frameHeight="460"/>
+	<SubTexture name="restoepico0000" x="0" y="916" width="784" height="451" frameX="0" frameY="-9" frameWidth="784" frameHeight="460"/>
+	<SubTexture name="restoepico0001" x="0" y="916" width="784" height="451" frameX="0" frameY="-9" frameWidth="784" frameHeight="460"/>
+	<SubTexture name="restoepico0002" x="0" y="1367" width="784" height="460"/>
+	<SubTexture name="restoepico0003" x="0" y="1367" width="784" height="460"/>
+	<SubTexture name="restoepico0004" x="0" y="1367" width="784" height="460"/>
+	<SubTexture name="restoepico0005" x="0" y="1367" width="784" height="460"/>
+</TextureAtlas>
