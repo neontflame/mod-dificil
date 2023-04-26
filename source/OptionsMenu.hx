@@ -66,12 +66,14 @@ class OptionsMenu extends MusicBeatState
 		for (i in 0...options.length)
 		{
 			// var controlLabel:FlxText = new FlxText(0, (70 * i) + 30, options[i].getName(), true, false);
-			var controlLabel:FlxText = new FlxText(30, (32 * i) + 30, 0, options[i].getName(), 30);
+			var controlLabel:FlxText = new FlxText(30, (64 * i) + 30, 0, options[i].getName(), 60);
 			controlLabel.scrollFactor.set();
-			controlLabel.setFormat("VCR OSD Mono", 30, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+			controlLabel.setFormat("VCR OSD Mono", 60, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 			// controlLabel.isMenuItem = true;
 			// controlLabel.targetY = i;
 			grpControls.add(controlLabel);
+			
+			controlLabel.screenCenter(X);
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 		}
 
@@ -99,10 +101,12 @@ class OptionsMenu extends MusicBeatState
 				grpControls.clear();
 				for (i in 0...options.length)
 					{
-						var controlLabel:FlxText = new FlxText(30, (32 * i) + 30, 0, options[i].getName(), 30);
+						var controlLabel:FlxText = new FlxText(30, (64 * i) + 30, 0, options[i].getName(), 60);
 						controlLabel.scrollFactor.set();
-						controlLabel.setFormat("VCR OSD Mono", 30, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+						controlLabel.setFormat("VCR OSD Mono", 60, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 						grpControls.add(controlLabel);
+						
+						controlLabel.screenCenter(X);
 						// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 					}
 				curSelected = 0;
@@ -119,13 +123,13 @@ class OptionsMenu extends MusicBeatState
 					case 'FPS Cap':
 						var fps = (cast (Lib.current.getChildAt(0), Main)).getFPSCap();
 
-						if (FlxG.keys.pressed.RIGHT && fps < 285) // actual cap is 285
+						if (FlxG.keys.justPressed.RIGHT && fps < 285) // actual cap is 285
 						{
 							(cast (Lib.current.getChildAt(0), Main)).setFPSCap(fps + 10);
 							FlxG.save.data.fpsCap = fps + 10;
 						}
 		
-						if (FlxG.keys.pressed.LEFT && fps > 60)
+						if (FlxG.keys.justPressed.LEFT && fps > 60)
 						{
 							(cast (Lib.current.getChildAt(0), Main)).setFPSCap(fps - 10);
 							FlxG.save.data.fpsCap = fps - 10;
@@ -151,10 +155,10 @@ class OptionsMenu extends MusicBeatState
 
 						versionShit.text = "Current Scroll Speed: " + FlxG.save.data.scrollSpeed + " - Description - " + currentDescription;
 					default:
-						if (FlxG.keys.pressed.RIGHT)
+						if (FlxG.keys.justPressed.RIGHT)
 							FlxG.save.data.offset += 0.1;
 		
-						if (FlxG.keys.pressed.LEFT)
+						if (FlxG.keys.justPressed.LEFT)
 							FlxG.save.data.offset -= 0.1;
 						
 						versionShit.text = "Offset (Left, Right): " + FlxG.save.data.offset + " - Description - " + currentDescription;
@@ -162,10 +166,10 @@ class OptionsMenu extends MusicBeatState
 			}
 			else
 			{
-				if (FlxG.keys.pressed.RIGHT)
+				if (FlxG.keys.justPressed.RIGHT)
 					FlxG.save.data.offset++;
 
-				if (FlxG.keys.pressed.LEFT)
+				if (FlxG.keys.justPressed.LEFT)
 					FlxG.save.data.offset--;
 				
 				versionShit.text = "Offset (Left, Right): " + FlxG.save.data.offset + " - Description - " + currentDescription;
@@ -178,10 +182,12 @@ class OptionsMenu extends MusicBeatState
 				{
 					if (currentSelectedCat.getOptions()[curSelected].press()) {
 						grpControls.remove(grpControls.members[curSelected]);
-						var ctrl:FlxText = new FlxText(30, (32 * curSelected) + 30, 0, currentSelectedCat.getOptions()[curSelected].getDisplay(), 30);
+						var ctrl:FlxText = new FlxText(30, (64 * curSelected) + 30, 0, currentSelectedCat.getOptions()[curSelected].getDisplay(), 60);
 						ctrl.scrollFactor.set();
-						ctrl.setFormat("VCR OSD Mono", 30, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+						ctrl.setFormat("VCR OSD Mono", 60, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 						grpControls.add(ctrl);
+						
+						ctrl.screenCenter(X);
 					}
 				}
 				else
@@ -191,10 +197,12 @@ class OptionsMenu extends MusicBeatState
 					grpControls.clear();
 					for (i in 0...currentSelectedCat.getOptions().length)
 						{
-							var controlLabel:FlxText = new FlxText(30, (32 * i) + 30, 0, currentSelectedCat.getOptions()[i].getDisplay(), 30);
+							var controlLabel:FlxText = new FlxText(30, (64 * i) + 30, 0, currentSelectedCat.getOptions()[i].getDisplay(), 60);
 							controlLabel.scrollFactor.set();
-							controlLabel.setFormat("VCR OSD Mono", 30, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+							controlLabel.setFormat("VCR OSD Mono", 60, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 							grpControls.add(controlLabel);
+							
+							controlLabel.screenCenter(X);
 							// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 						}
 					curSelected = 0;
@@ -236,11 +244,13 @@ class OptionsMenu extends MusicBeatState
 			bullShit++;
 
 			item.alpha = 0.6;
+			item.scale.set(1, 1);
 			// item.setGraphicSize(Std.int(item.width * 0.8));
 
 			if (item.text == (!isCat ? options[curSelected].getName() : currentSelectedCat.getOptions()[curSelected].getDisplay()))
 			{
 				item.alpha = 1;
+				item.scale.set(1.1, 1.1);
 				// item.setGraphicSize(Std.int(item.width));
 			}
 		}

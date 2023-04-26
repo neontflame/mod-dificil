@@ -13,7 +13,6 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import openfl.ui.Keyboard;
 import flixel.FlxSprite;
 
-
 class GameplayCustomizeState extends MusicBeatState
 {
 
@@ -57,8 +56,8 @@ class GameplayCustomizeState extends MusicBeatState
 		// var camPos:FlxPoint = new FlxPoint(dad.getGraphicMidpoint().x + 400, dad.getGraphicMidpoint().y);
 
 		// camFollow.setPosition(camPos.x, camPos.y);
-        add(sick);
 		sick.updateHitbox();
+        add(sick);
 
 		add(camFollow);
 
@@ -95,8 +94,6 @@ class GameplayCustomizeState extends MusicBeatState
         sick.x = FlxG.save.data.changedHitX;
         sick.y = FlxG.save.data.changedHitY;
 
-        sick.updateHitbox();
-
         FlxG.mouse.visible = true;
 
     }
@@ -110,17 +107,26 @@ class GameplayCustomizeState extends MusicBeatState
         FlxG.camera.zoom = FlxMath.lerp(0.9, FlxG.camera.zoom, 0.95);
         camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, 0.95);
 
-        if (FlxG.mouse.overlaps(sick) && FlxG.mouse.pressed)
+        if (FlxG.mouse.pressed)
         {
-            sick.x = FlxG.mouse.x - sick.width / 2;
-            sick.y = FlxG.mouse.y - sick.height / 2;
+            sick.x = FlxG.mouse.screenX - sick.width / 2;
+            sick.y = FlxG.mouse.screenY - sick.height;
         }
 
-        if (FlxG.mouse.overlaps(sick) && FlxG.mouse.justReleased)
+        if (FlxG.mouse.justReleased)
         {
             FlxG.save.data.changedHitX = sick.x;
             FlxG.save.data.changedHitY = sick.y;
             FlxG.save.data.changedHit = true;
+        }
+
+        if (FlxG.keys.justPressed.R)
+        {
+            sick.x = defaultX;
+            sick.y = defaultY;
+            FlxG.save.data.changedHitX = sick.x;
+            FlxG.save.data.changedHitY = sick.y;
+            FlxG.save.data.changedHit = false;
         }
 
         if (controls.BACK)
