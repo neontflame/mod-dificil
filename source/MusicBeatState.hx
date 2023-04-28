@@ -19,15 +19,19 @@ class MusicBeatState extends FlxUIState
 	private var curStep:Int = 0;
 	private var curBeat:Int = 0;
 	private var controls(get, never):Controls;
-
+	
+	private var someShits:Bool = true;
 	inline function get_controls():Controls
 		return PlayerSettings.player1.controls;
 
 	override function create()
 	{
-		CoolUtil.clearCache(true, true, false);
+		someShits = !(Std.string(Type.getClass(FlxG.state)) == 'PlayState');
+		
+		CoolUtil.clearCache(someShits, someShits, someShits, true);
+		
 		(cast(Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
-
+		
 		if (transIn != null)
 			trace('reg ' + transIn.region);
 

@@ -1,5 +1,6 @@
 package;
 
+import flixel.FlxG;
 import lime.utils.Assets;
 import openfl.utils.Assets as OpenFLAssets;
 import openfl.system.System;
@@ -56,7 +57,7 @@ class CoolUtil
 	 * @author swordcube
 	 * modified by neon a tad lil bit to fit my use case a bit more
 	 */
-	public inline static function clearCache(assets:Bool = true, bitmaps:Bool = true, sounds:Bool = false) {
+	public inline static function clearCache(assets:Bool = true, bitmaps:Bool = true, sounds:Bool = false, garbageCollector:Bool = true) {
 		
 		if (assets) {
 			// Clear OpenFL & Lime Assets
@@ -85,8 +86,10 @@ class CoolUtil
 		trace('sound cache cleared mhm');
 		}
 		
-		// Run garbage collector just in case none of that worked
-		System.gc();
-		trace('here comes the garbage truck woo');
+		if (garbageCollector) {
+			// Run garbage collector just in case none of that worked
+			System.gc();
+			trace('here comes the garbage truck woo');
+			}
 	}
 }

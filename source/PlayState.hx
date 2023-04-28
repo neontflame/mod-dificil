@@ -1425,6 +1425,8 @@ class PlayState extends MusicBeatState
 			#if desktop
 			DiscordClient.changePresence("Chart Editor", null, null, true);
 			#end
+			// nao se pode mais limpar o cache hoje em dia aff ¬¬
+			// CoolUtil.clearCache(true, true, false, true);
 			FlxG.switchState(new ChartingState());
 		}
 
@@ -1613,7 +1615,8 @@ class PlayState extends MusicBeatState
 
 			vocals.stop();
 			FlxG.sound.music.stop();
-
+			
+			CoolUtil.clearCache(true, true, false, true);
 			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 
 			#if desktop
@@ -1781,6 +1784,7 @@ class PlayState extends MusicBeatState
 					transIn = FlxTransitionableState.defaultTransIn;
 					transOut = FlxTransitionableState.defaultTransOut;
 
+					CoolUtil.clearCache(true, true, true, true);
 					FlxG.switchState(new MainMenuState());
 
 					// if ()
@@ -1832,6 +1836,7 @@ class PlayState extends MusicBeatState
 			else
 			{
 				trace('WENT BACK TO FREEPLAY??');
+				CoolUtil.clearCache(true, true, true, true);
 				FlxG.switchState(new CustomFreeplayState());
 			}
 		}

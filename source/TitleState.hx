@@ -95,7 +95,7 @@ class TitleState extends MusicBeatState
 		}
 
 		#if FREEPLAY
-		FlxG.switchState(new FreeplayState());
+		FlxG.switchState(new CustomFreeplayState());
 		#elseif CHARTING
 		FlxG.switchState(new ChartingState());
 		#else
@@ -168,12 +168,12 @@ class TitleState extends MusicBeatState
 
 		titleText = new FlxSprite(100, FlxG.height * 0.8);
 		titleText.frames = Paths.getSparrowAtlas('titleEnter');
-		titleText.animation.addByPrefix('idle', "Press Enter to Begin", 24);
-		titleText.animation.addByPrefix('press', "ENTER PRESSED", 24);
+		titleText.animation.addByPrefix('idle', 'Press Enter to Begin', 24);
+		titleText.animation.addByPrefix('press', 'ENTER PRESSED', 24);
 		titleText.antialiasing = true;
 		titleText.animation.play('idle');
 		titleText.updateHitbox();
-		// titleText.screenCenter(X);
+		titleText.screenCenter(X);
 		add(titleText);
 
 		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
@@ -281,7 +281,7 @@ class TitleState extends MusicBeatState
 				// NGio.unlockMedal(61034);
 			#end
 
-			titleText.animation.play('press');
+			titleText.animation.play('press', true);
 
 			FlxG.camera.flash(FlxColor.WHITE, 1);
 			FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
