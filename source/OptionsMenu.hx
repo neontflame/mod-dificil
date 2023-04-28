@@ -72,7 +72,7 @@ class OptionsMenu extends MusicBeatState
 			// controlLabel.isMenuItem = true;
 			// controlLabel.targetY = i;
 			grpControls.add(controlLabel);
-			
+
 			controlLabel.screenCenter(X);
 			// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 		}
@@ -88,126 +88,125 @@ class OptionsMenu extends MusicBeatState
 	}
 
 	var isCat:Bool = false;
-	
+
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
 
-			if (controls.BACK && !isCat)
-				FlxG.switchState(new MainMenuState());
-			else if (controls.BACK)
+		if (controls.BACK && !isCat)
+			FlxG.switchState(new MainMenuState());
+		else if (controls.BACK)
+		{
+			isCat = false;
+			grpControls.clear();
+			for (i in 0...options.length)
 			{
-				isCat = false;
-				grpControls.clear();
-				for (i in 0...options.length)
-					{
-						var controlLabel:FlxText = new FlxText(30, (64 * i) + 30, 0, options[i].getName(), 60);
-						controlLabel.scrollFactor.set();
-						controlLabel.setFormat("VCR OSD Mono", 60, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-						grpControls.add(controlLabel);
-						
-						controlLabel.screenCenter(X);
-						// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
-					}
-				curSelected = 0;
+				var controlLabel:FlxText = new FlxText(30, (64 * i) + 30, 0, options[i].getName(), 60);
+				controlLabel.scrollFactor.set();
+				controlLabel.setFormat("VCR OSD Mono", 60, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+				grpControls.add(controlLabel);
+
+				controlLabel.screenCenter(X);
+				// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 			}
-			if (controls.UP_P)
-				changeSelection(-1);
-			if (controls.DOWN_P)
-				changeSelection(1);
-			
+			curSelected = 0;
+		}
+		if (controls.UP_P)
+			changeSelection(-1);
+		if (controls.DOWN_P)
+			changeSelection(1);
+
+		if (isCat)
+		{
+			switch (currentSelectedCat.getOptions()[curSelected].getDisplay())
+			{
+				case 'FPS Cap':
+					var fps = (cast(Lib.current.getChildAt(0), Main)).getFPSCap();
+
+					if (FlxG.keys.justPressed.RIGHT && fps < 285) // actual cap is 285
+					{
+						(cast(Lib.current.getChildAt(0), Main)).setFPSCap(fps + 10);
+						FlxG.save.data.fpsCap = fps + 10;
+					}
+
+					if (FlxG.keys.justPressed.LEFT && fps > 60)
+					{
+						(cast(Lib.current.getChildAt(0), Main)).setFPSCap(fps - 10);
+						FlxG.save.data.fpsCap = fps - 10;
+					}
+
+					versionShit.text = "Current FPS Cap: " + fps + " - Description - " + currentDescription;
+
+				case 'Scroll Speed':
+					if (FlxG.keys.justPressed.RIGHT)
+						FlxG.save.data.scrollSpeed += 0.1;
+
+					if (FlxG.keys.justPressed.LEFT)
+						FlxG.save.data.scrollSpeed -= 0.1;
+
+					// caps
+
+					if (FlxG.save.data.scrollSpeed < 0)
+						FlxG.save.data.scrollSpeed = 0.1;
+
+					if (FlxG.save.data.scrollSpeed > 10)
+						FlxG.save.data.scrollSpeed = 10;
+
+					versionShit.text = "Current Scroll Speed: " + FlxG.save.data.scrollSpeed + " - Description - " + currentDescription;
+				default:
+					if (FlxG.keys.justPressed.RIGHT)
+						FlxG.save.data.offset += 0.1;
+
+					if (FlxG.keys.justPressed.LEFT)
+						FlxG.save.data.offset -= 0.1;
+
+					versionShit.text = "Offset (Left, Right): " + FlxG.save.data.offset + " - Description - " + currentDescription;
+			}
+		}
+		else
+		{
+			if (FlxG.keys.justPressed.RIGHT)
+				FlxG.save.data.offset++;
+
+			if (FlxG.keys.justPressed.LEFT)
+				FlxG.save.data.offset--;
+
+			versionShit.text = "Offset (Left, Right): " + FlxG.save.data.offset + " - Description - " + currentDescription;
+		}
+
+		if (controls.ACCEPT)
+		{
 			if (isCat)
 			{
-				switch(currentSelectedCat.getOptions()[curSelected].getDisplay())
+				if (currentSelectedCat.getOptions()[curSelected].press())
 				{
-					case 'FPS Cap':
-						var fps = (cast (Lib.current.getChildAt(0), Main)).getFPSCap();
+					grpControls.remove(grpControls.members[curSelected]);
+					var ctrl:FlxText = new FlxText(30, (64 * curSelected) + 30, 0, currentSelectedCat.getOptions()[curSelected].getDisplay(), 60);
+					ctrl.scrollFactor.set();
+					ctrl.setFormat("VCR OSD Mono", 60, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+					grpControls.add(ctrl);
 
-						if (FlxG.keys.justPressed.RIGHT && fps < 285) // actual cap is 285
-						{
-							(cast (Lib.current.getChildAt(0), Main)).setFPSCap(fps + 10);
-							FlxG.save.data.fpsCap = fps + 10;
-						}
-		
-						if (FlxG.keys.justPressed.LEFT && fps > 60)
-						{
-							(cast (Lib.current.getChildAt(0), Main)).setFPSCap(fps - 10);
-							FlxG.save.data.fpsCap = fps - 10;
-						}
-
-						versionShit.text = "Current FPS Cap: " + fps + " - Description - " + currentDescription;
-		
-						
-					case 'Scroll Speed':
-						if (FlxG.keys.justPressed.RIGHT)
-							FlxG.save.data.scrollSpeed+=0.1;
-		
-						if (FlxG.keys.justPressed.LEFT)
-							FlxG.save.data.scrollSpeed-=0.1;
-
-						// caps
-
-						if (FlxG.save.data.scrollSpeed < 0)
-							FlxG.save.data.scrollSpeed = 0.1;
-
-						if (FlxG.save.data.scrollSpeed > 10)
-							FlxG.save.data.scrollSpeed = 10;
-
-						versionShit.text = "Current Scroll Speed: " + FlxG.save.data.scrollSpeed + " - Description - " + currentDescription;
-					default:
-						if (FlxG.keys.justPressed.RIGHT)
-							FlxG.save.data.offset += 0.1;
-		
-						if (FlxG.keys.justPressed.LEFT)
-							FlxG.save.data.offset -= 0.1;
-						
-						versionShit.text = "Offset (Left, Right): " + FlxG.save.data.offset + " - Description - " + currentDescription;
+					ctrl.screenCenter(X);
 				}
 			}
 			else
 			{
-				if (FlxG.keys.justPressed.RIGHT)
-					FlxG.save.data.offset++;
-
-				if (FlxG.keys.justPressed.LEFT)
-					FlxG.save.data.offset--;
-				
-				versionShit.text = "Offset (Left, Right): " + FlxG.save.data.offset + " - Description - " + currentDescription;
-			}
-		
-
-			if (controls.ACCEPT)
-			{
-				if (isCat)
+				currentSelectedCat = options[curSelected];
+				isCat = true;
+				grpControls.clear();
+				for (i in 0...currentSelectedCat.getOptions().length)
 				{
-					if (currentSelectedCat.getOptions()[curSelected].press()) {
-						grpControls.remove(grpControls.members[curSelected]);
-						var ctrl:FlxText = new FlxText(30, (64 * curSelected) + 30, 0, currentSelectedCat.getOptions()[curSelected].getDisplay(), 60);
-						ctrl.scrollFactor.set();
-						ctrl.setFormat("VCR OSD Mono", 60, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-						grpControls.add(ctrl);
-						
-						ctrl.screenCenter(X);
-					}
+					var controlLabel:FlxText = new FlxText(30, (64 * i) + 30, 0, currentSelectedCat.getOptions()[i].getDisplay(), 60);
+					controlLabel.scrollFactor.set();
+					controlLabel.setFormat("VCR OSD Mono", 60, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+					grpControls.add(controlLabel);
+
+					controlLabel.screenCenter(X);
+					// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
 				}
-				else
-				{
-					currentSelectedCat = options[curSelected];
-					isCat = true;
-					grpControls.clear();
-					for (i in 0...currentSelectedCat.getOptions().length)
-						{
-							var controlLabel:FlxText = new FlxText(30, (64 * i) + 30, 0, currentSelectedCat.getOptions()[i].getDisplay(), 60);
-							controlLabel.scrollFactor.set();
-							controlLabel.setFormat("VCR OSD Mono", 60, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-							grpControls.add(controlLabel);
-							
-							controlLabel.screenCenter(X);
-							// DONT PUT X IN THE FIRST PARAMETER OF new ALPHABET() !!
-						}
-					curSelected = 0;
-				}
+				curSelected = 0;
 			}
+		}
 		FlxG.save.flush();
 	}
 
@@ -218,7 +217,7 @@ class OptionsMenu extends MusicBeatState
 		#if !switch
 		// NGio.logEvent("Fresh");
 		#end
-		
+
 		FlxG.sound.play(Paths.sound("scrollMenu"), 0.4);
 
 		curSelected += change;

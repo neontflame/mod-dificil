@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="freeplayPortraits.png">
+	<!-- Created with Adobe Animate version 19.0.0.326 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="tutorial" x="0" y="0" width="431" height="177"/>
+	<SubTexture name="mod-dificil" x="431" y="0" width="431" height="177"/>
+	<SubTexture name="mod-ereto" x="0" y="177" width="431" height="177"/>
+	<SubTexture name="mod-ereto-ereto" x="431" y="177" width="431" height="177"/>
+	<SubTexture name="jack" x="0" y="354" width="431" height="177"/>
+	<SubTexture name="no-refunds" x="431" y="354" width="431" height="177"/>
+	<SubTexture name="scratch-things" x="0" y="531" width="431" height="177"/>
+	<SubTexture name="cbat" x="431" y="531" width="431" height="177"/>
+</TextureAtlas>

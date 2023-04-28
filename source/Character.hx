@@ -124,12 +124,12 @@ class Character extends FlxSprite
 				setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 				updateHitbox();
 				antialiasing = false;
-				
+
 			// ----- OPPONENTS -----
-			
+
 			case 'dad':
 				// DAD ANIMATION LOADING CODE
-				tex = Paths.getSparrowAtlas('DADDY_DEAREST','shared');
+				tex = Paths.getSparrowAtlas('DADDY_DEAREST', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'Dad idle dance', 24);
 				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24);
@@ -144,10 +144,10 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 0, -30);
 
 				playAnim('idle');
-			
+
 			case 'frub':
 				// frubsglebs?!?!?!?
-				tex = Paths.getSparrowAtlas('frubsglebs','shared');
+				tex = Paths.getSparrowAtlas('frubsglebs', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'frub idle', 24);
 				animation.addByPrefix('singUP', 'frub up', 24);
@@ -162,10 +162,10 @@ class Character extends FlxSprite
 				addOffset("singDOWN", 107, -160);
 
 				playAnim('idle');
-			
+
 			// ----- BF CODE -----
 			case 'bf':
-				var tex = Paths.getSparrowAtlas('BOYFRIEND','shared');
+				var tex = Paths.getSparrowAtlas('BOYFRIEND', 'shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
 				animation.addByPrefix('singUP', 'BF NOTE UP0', 24, false);
@@ -306,7 +306,6 @@ class Character extends FlxSprite
 				updateHitbox();
 				antialiasing = false;
 				flipX = true;
-
 		}
 
 		dance();

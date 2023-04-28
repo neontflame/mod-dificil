@@ -13,7 +13,6 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import io.newgrounds.NG;
 import lime.app.Application;
-
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -24,7 +23,7 @@ class MainMenuState extends MusicBeatState
 {
 	var curSelected:Int = 0;
 	var curMenuEpico:Int = 0;
-	
+
 	var menuItems:FlxTypedGroup<FlxSprite>;
 
 	var musicShitYeah:Array<String> = ['mod-dificil', 'story mode', 'story mode', 'story mode'];
@@ -40,18 +39,18 @@ class MainMenuState extends MusicBeatState
 
 	var magenta:FlxSprite;
 	var camFollow:FlxObject;
-	
+
 	// the menu funny
 	var menuFunny:FlxSprite;
-	var menuestTextFunny:FlxSprite;	
-	
+	var menuestTextFunny:FlxSprite;
+
 	override function create()
 	{
 		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
-		
+
 		if (!FlxG.sound.music.playing)
 		{
 			FlxG.sound.playMusic(Paths.music('freakyMenu'));
@@ -85,34 +84,34 @@ class MainMenuState extends MusicBeatState
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		// add(menuItems);
 
-		//the uhh awesome
+		// the uhh awesome
 		var menuFunnyTex = Paths.getSparrowAtlas('menu/bagulhoEuAcho');
 
 		menuFunny = new FlxSprite(248, -230);
 		menuFunny.frames = menuFunnyTex;
-		menuFunny.animation.addByPrefix('menu0', 'menuepico',  60, false);
+		menuFunny.animation.addByPrefix('menu0', 'menuepico', 60, false);
 		menuFunny.animation.addByPrefix('menu1', 'restoepico', 60, false);
 		menuFunny.animation.play('menu0');
 		menuFunny.antialiasing = true;
 		menuFunny.screenCenter();
 		menuFunny.scrollFactor.set();
 		add(menuFunny);
-			
+
 		// os texto foda
 		var textestMostLikely = Paths.getSparrowAtlas('menu/textoDoMenu');
 
 		menuestTextFunny = new FlxSprite(348, 230);
 		menuestTextFunny.frames = textestMostLikely;
-		menuestTextFunny.animation.addByPrefix('menu00', 'menuParte1',  60, false);
-		menuestTextFunny.animation.addByPrefix('menu01', 'menuParte2',  60, false);
-		menuestTextFunny.animation.addByPrefix('menu02', 'menuParte3',  60, false);
-		menuestTextFunny.animation.addByPrefix('menu10', 'menuPar1',  60, false);
-		menuestTextFunny.animation.addByPrefix('menu11', 'menuPar2',  60, false);
+		menuestTextFunny.animation.addByPrefix('menu00', 'menuParte1', 60, false);
+		menuestTextFunny.animation.addByPrefix('menu01', 'menuParte2', 60, false);
+		menuestTextFunny.animation.addByPrefix('menu02', 'menuParte3', 60, false);
+		menuestTextFunny.animation.addByPrefix('menu10', 'menuPar1', 60, false);
+		menuestTextFunny.animation.addByPrefix('menu11', 'menuPar2', 60, false);
 		menuestTextFunny.animation.play('menu00');
 		menuestTextFunny.antialiasing = true;
 		menuestTextFunny.scrollFactor.set();
 		add(menuestTextFunny);
-		
+
 		var tex = Paths.getSparrowAtlas('FNF_main_menu_assets');
 
 		for (i in 0...optionShit.length)
@@ -133,7 +132,6 @@ class MainMenuState extends MusicBeatState
 		add(versionShit);
 
 		// NG.core.calls.event.logEvent('swag').send();
-
 
 		if (FlxG.save.data.dfjk)
 			controls.setKeyboardScheme(KeyboardScheme.Solo, true);
@@ -185,7 +183,7 @@ class MainMenuState extends MusicBeatState
 				menuFunny.animation.play('menu1');
 				menuestTextFunny.animation.play('menu' + curMenuEpico + curSelected);
 			}
-			
+
 			if (controls.BACK)
 			{
 				FlxG.switchState(new TitleState());
@@ -224,19 +222,21 @@ class MainMenuState extends MusicBeatState
 						{
 							FlxFlicker.flicker(spr, 1, 0.06, false, false, function(flick:FlxFlicker)
 							{
-								var daChoice:String =  musicShitYeah[curSelected];
-								
-								if (curMenuEpico == 0) {
+								var daChoice:String = musicShitYeah[curSelected];
+
+								if (curMenuEpico == 0)
+								{
 									daChoice = musicShitYeah[0];
 								}
-								
-								if (curMenuEpico == 1) {
+
+								if (curMenuEpico == 1)
+								{
 									daChoice = optionShit[curSelected];
 								}
-								
+
 								switch (daChoice)
 								{
-									//codigo???? eu acho???????? sao 3:29 da manha eu preciso dormir
+									// codigo???? eu acho???????? sao 3:29 da manha eu preciso dormir
 									case 'mod-dificil':
 										PlayState.storyPlaylist = ['mod-dificil'];
 										PlayState.isStoryMode = true;
@@ -244,13 +244,13 @@ class MainMenuState extends MusicBeatState
 										PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase(), PlayState.storyPlaylist[0].toLowerCase());
 										LoadingState.loadAndSwitchState(new PlayState(), true);
 										trace("GRRRRRR Selected");
-										
+
 									case 'story mode':
 										FlxG.switchState(new StoryMenuState());
 										trace("Story Menu Selected");
-							
+
 									case 'freeplay':
-										FlxG.switchState(new FreeplayState());
+										FlxG.switchState(new CustomFreeplayState());
 
 										trace("Freeplay Menu Selected");
 
@@ -279,21 +279,19 @@ class MainMenuState extends MusicBeatState
 		if (curMenuEpico == 0)
 			if (curSelected >= musicShitYeah.length - 1)
 				curSelected = 0;
-			if (curSelected < 0)
-				curSelected = musicShitYeah.length - 2;
-		
-		if (curMenuEpico == 1) 
+		if (curSelected < 0)
+			curSelected = musicShitYeah.length - 2;
+
+		if (curMenuEpico == 1)
 			if (curSelected >= optionShit.length)
 				curSelected = 0;
-			if (curSelected < 0)
-				curSelected = optionShit.length - 1;
-		
+		if (curSelected < 0)
+			curSelected = optionShit.length - 1;
 	}
-	
+
 	function changeItemFunny(huh:Int = 0)
 	{
 		curMenuEpico = huh;
 		curSelected = 0;
-
 	}
 }

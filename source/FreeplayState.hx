@@ -9,8 +9,6 @@ import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import lime.utils.Assets;
-
-
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -52,10 +50,10 @@ class FreeplayState extends MusicBeatState
 			}
 		 */
 
-		 #if desktop
-		 // Updating Discord Rich Presence
-		 DiscordClient.changePresence("In the Menus", null);
-		 #end
+		#if desktop
+		// Updating Discord Rich Presence
+		DiscordClient.changePresence("In the Menus", null);
+		#end
 
 		var isDebug:Bool = false;
 
@@ -63,13 +61,13 @@ class FreeplayState extends MusicBeatState
 		isDebug = true;
 		#end
 
-			addWeek(['mod-dificil', 'mod-ereto', 'jack'], 1, ['frub', 'fup', 'jack']);
-			//addWeek(['Spookeez', 'South', 'Monster'], 2, ['spooky', 'spooky', 'monster']);
+		addWeek(['mod-dificil', 'mod-ereto', 'jack'], 1, ['frub', 'fup', 'jack']);
+		// addWeek(['Spookeez', 'South', 'Monster'], 2, ['spooky', 'spooky', 'monster']);
 		//	addWeek(['Pico', 'Philly', 'Blammed'], 3, ['pico']);
 
 		//	addWeek(['Satin-Panties', 'High', 'Milf'], 4, ['mom']);
 		//	addWeek(['Cocoa', 'Eggnog', 'Winter-Horrorland'], 5, ['parents-christmas', 'parents-christmas', 'monster-christmas']);
-			
+
 		//	addWeek(['Senpai', 'Roses', 'Thorns'], 6, ['senpai', 'senpai', 'spirit']);
 
 		// LOAD MUSIC
@@ -271,7 +269,7 @@ class FreeplayState extends MusicBeatState
 		#end
 
 		#if PRELOAD_ALL
-		Conductor.changeBPM(Song.loadFromJson(Highscore.formatSong(songs[curSelected].songName,0),songs[curSelected].songName.toLowerCase()).bpm);
+		Conductor.changeBPM(Song.loadFromJson(Highscore.formatSong(songs[curSelected].songName, 0), songs[curSelected].songName.toLowerCase()).bpm);
 		FlxG.sound.playMusic(Paths.inst(songs[curSelected].songName), 0);
 		#end
 

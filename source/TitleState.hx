@@ -23,7 +23,6 @@ import flixel.util.FlxTimer;
 import io.newgrounds.NG;
 import lime.app.Application;
 import openfl.Assets;
-
 #if desktop
 import Discord.DiscordClient;
 import sys.thread.Thread;
@@ -50,13 +49,12 @@ class TitleState extends MusicBeatState
 		#if polymod
 		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end
-		
+
 		#if sys
 		if (!sys.FileSystem.exists(Sys.getCwd() + "/assets/replays"))
 			sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays");
 		#end
 
-		
 		PlayerSettings.init();
 
 		#if desktop
@@ -72,8 +70,8 @@ class TitleState extends MusicBeatState
 		// NGio.noLogin(APIStuff.API);
 
 		#if ng
-		//var ng:NGio = new NGio(APIStuff.API, APIStuff.EncKey);
-		//trace('NEWGROUNDS LOL');
+		// var ng:NGio = new NGio(APIStuff.API, APIStuff.EncKey);
+		// trace('NEWGROUNDS LOL');
 		#end
 
 		FlxG.save.bind('funkin', 'ninjamuffin99');
@@ -276,11 +274,11 @@ class TitleState extends MusicBeatState
 		if (pressedEnter && !transitioning && skippedIntro)
 		{
 			#if !switch
-			//NGio.unlockMedal(60960);
+			// NGio.unlockMedal(60960);
 
 			// If it's Friday according to da clock
 			if (Date.now().getDay() == 5)
-				//NGio.unlockMedal(61034);
+				// NGio.unlockMedal(61034);
 			#end
 
 			titleText.animation.play('press');
@@ -293,23 +291,22 @@ class TitleState extends MusicBeatState
 
 			new FlxTimer().start(2, function(tmr:FlxTimer)
 			{
-
 				// Get current version of Kade Engine
 
 				var http = new haxe.Http("https://raw.githubusercontent.com/KadeDev/Kade-Engine/master/version.downloadMe");
 
-				http.onData = function (data:String) {
-				  
-						FlxG.switchState(new MainMenuState());
+				http.onData = function(data:String)
+				{
+					FlxG.switchState(new MainMenuState());
 				}
-				
-				http.onError = function (error) {
-				  trace('error: $error');
-				  FlxG.switchState(new MainMenuState()); // fail but we go anyway
-				}
-				
-				http.request();
 
+				http.onError = function(error)
+				{
+					trace('error: $error');
+					FlxG.switchState(new MainMenuState()); // fail but we go anyway
+				}
+
+				http.request();
 			});
 			// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
 		}
@@ -382,7 +379,7 @@ class TitleState extends MusicBeatState
 			case 2:
 				addMoreTextArray(['neontflame']);
 				addMoreText('junto de');
-				addMoreTextArray(['passo','davekal']);
+				addMoreTextArray(['passo', 'davekal']);
 			case 3:
 				addMoreText('apresentam');
 			// credTextShit.text += '\npresent...';
