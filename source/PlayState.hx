@@ -1836,7 +1836,7 @@ class PlayState extends MusicBeatState
 			else
 			{
 				trace('WENT BACK TO FREEPLAY??');
-				CoolUtil.clearCache(true, true, true, true);
+				// CoolUtil.clearCache(true, true, true, true);
 				FlxG.switchState(new CustomFreeplayState());
 			}
 		}
