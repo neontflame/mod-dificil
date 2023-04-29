@@ -39,6 +39,7 @@ class TitleState extends MusicBeatState
 	var credTextShit:Alphabet;
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
+	var placeholderSpr:FlxSprite;
 
 	var curWacky:Array<String> = [];
 
@@ -140,7 +141,7 @@ class TitleState extends MusicBeatState
 			FlxG.sound.music.fadeIn(4, 0, 0.7);
 		}
 
-		Conductor.changeBPM(102);
+		Conductor.changeBPM(93.571);
 		persistentUpdate = true;
 
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
@@ -173,7 +174,7 @@ class TitleState extends MusicBeatState
 		titleText.antialiasing = true;
 		titleText.animation.play('idle');
 		titleText.updateHitbox();
-		titleText.screenCenter(X);
+		//titleText.screenCenter(X);
 		add(titleText);
 
 		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
@@ -206,6 +207,14 @@ class TitleState extends MusicBeatState
 		ngSpr.screenCenter(X);
 		ngSpr.antialiasing = true;
 
+		placeholderSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('ah_shit'));
+		add(placeholderSpr);
+		placeholderSpr.visible = false;
+		placeholderSpr.setGraphicSize(Std.int(placeholderSpr.width * 0.8));
+		placeholderSpr.updateHitbox();
+		placeholderSpr.screenCenter(X);
+		placeholderSpr.antialiasing = true;
+		
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		FlxG.mouse.visible = false;
@@ -379,50 +388,67 @@ class TitleState extends MusicBeatState
 			case 2:
 				addMoreTextArray(['neontflame']);
 				addMoreText('junto de');
-				addMoreTextArray(['passo', 'davekal']);
 			case 3:
+				addMoreTextArray(['passo', 'davekal']);
+			case 4:
 				addMoreText('apresentam');
 			// credTextShit.text += '\npresent...';
 			// credTextShit.addText();
-			case 4:
+			case 7:
 				deleteCoolText();
 			// credTextShit.visible = false;
 			// credTextShit.text = 'In association \nwith';
 			// credTextShit.screenCenter();
-			case 5:
-				createCoolText(['feito por uns', 'doido do']);
-			case 7:
+			case 9:
+				createCoolText(['feito por uns']);
+			case 10:
+				addMoreText('doido do');
+			case 11:
 				addMoreText('edc');
+			case 13:
 				ngSpr.visible = true;
 			// credTextShit.text += '\nNewgrounds';
-			case 8:
+			case 15:
 				deleteCoolText();
 				ngSpr.visible = false;
 			// credTextShit.visible = false;
 
 			// credTextShit.text = 'Shoutouts Tom Fulp';
 			// credTextShit.screenCenter();
-			case 9:
+			case 17:
 				createCoolText([curWacky[0]]);
 			// credTextShit.visible = true;
-			case 11:
+			case 19:
 				addMoreText(curWacky[1]);
 			// credTextShit.text += '\nlmao';
-			case 12:
+			case 24:
 				deleteCoolText();
 			// credTextShit.visible = false;
 			// credTextShit.text = "Friday";
 			// credTextShit.screenCenter();
-			case 13:
-				addMoreText('Friday');
+			case 25:
+				createCoolText(['e laiala']);
+			case 27:
+				addMoreText('placeholder');
+			case 29:
+				placeholderSpr.visible = true;
+			case 31:
+				placeholderSpr.visible = false;
+				deleteCoolText();
+			case 33:
+				createCoolText(['Friday']);
 			// credTextShit.visible = true;
-			case 14:
+			case 35:
 				addMoreText('Night');
 			// credTextShit.text += '\nNight';
-			case 15:
+			case 37:
 				addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
-
-			case 16:
+			case 38:
+				addMoreText('Mod'); 
+			case 39:
+				addMoreText('Dificil'); 
+				
+			case 40:
 				skipIntro();
 		}
 	}

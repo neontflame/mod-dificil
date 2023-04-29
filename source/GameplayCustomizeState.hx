@@ -33,7 +33,7 @@ class GameplayCustomizeState extends MusicBeatState
 		DiscordClient.changePresence("Customizing Gameplay", null);
 		#end
 
-		Conductor.changeBPM(102);
+		Conductor.changeBPM(187.142);
 		persistentUpdate = true;
 
 		super.create();

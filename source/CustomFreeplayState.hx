@@ -64,6 +64,16 @@ class CustomFreeplayState extends MusicBeatState
 		bg.antialiasing = true;
 		add(bg);
 
+		var magenta:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('menuBGMagenta'));
+		magenta.scrollFactor.x = 0;
+		magenta.scrollFactor.y = 0;
+		magenta.setGraphicSize(Std.int(magenta.width * 1.1));
+		magenta.updateHitbox();
+		magenta.screenCenter();
+		magenta.antialiasing = true;
+		magenta.visible = false;
+		add(magenta);
+		
 		// OS FUNNY LA DO MENU FREEPLAY EPICO
 		// saca so
 		var bagulho:FlxSprite = new FlxSprite(394, 82).loadGraphic(Paths.image('menu/outroBagulho'));
@@ -147,6 +157,9 @@ class CustomFreeplayState extends MusicBeatState
 
 		if (controls.ACCEPT)
 		{
+			FlxG.sound.play(Paths.sound('confirmMenu'), 0.4);
+			FlxFlicker.flicker(magenta, 1.1, 0.15, false);
+					
 			var poop:String = Highscore.formatSong(songs[curSelected].songName.toLowerCase(), 1);
 
 			trace(poop);
